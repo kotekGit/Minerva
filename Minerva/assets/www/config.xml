@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "pl.edy.wat.wcy.tim"
+        versionCode="10"
+        version   = "1.0.0">
+
+    <name>Minerva App</name>
+
+    <description>
+        Minerva App Project
+    </description>
+
+    <author email="kotowski.poczta@gmail.com">
+        Kotowski Łukasz
+    </author>
+
+</widget>
