@@ -9,7 +9,8 @@ var messageENG = {
 	user : "Username",
 	pass: "Password",
 	cancel : "Cancel",
-	signin : "Sign in"
+	signin : "Sign in",
+	connectionError : "Connection Error!"
 };
 
 var messagePL = {
@@ -21,7 +22,9 @@ var messagePL = {
 	user : "Nazwa użytkownika",
 	pass: "Hasło",
 	cancel : "Anuluj",
-	signin : "Zaloguj się"
+	signin : "Zaloguj się",
+	connectionError : "Błąd połączenia!"
+		
 };
 
 function getMessage(msg) {

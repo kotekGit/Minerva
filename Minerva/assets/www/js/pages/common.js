@@ -14,18 +14,25 @@ function mobileInit() {
 		  $.mobile.loader.prototype.options.theme = "b";
 		  $.mobile.loader.prototype.options.html = "";
 	});
+	
+	document.addEventListener("deviceready",onDeviceReady,false);
 }
 
 
-function ajaxPost(url, data2, dataType, success2, fail) {
+function onDeviceReady() {
+	setCameraDefaults();
+}
+
+
+function ajaxPost(url, data, success, fail) {
 	$.ajax({
 		  type: "POST",
 		  async: "false",
+		  contentType: "application/json;",
+		  dataType: "jsonp",
 		  url: url,
-		  data: data2,
-		  success: success2,
+		  data: data,
+		  success: success,
 		  error : fail,
-		  contentType: "application/json; charset=utf-8",
-		  dataType: dataType
 	});
 }

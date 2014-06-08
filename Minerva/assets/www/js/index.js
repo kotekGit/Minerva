@@ -10,12 +10,7 @@ function appInit() {
 	prepareForm();
 }
 
-function success(msg) {
-	alert("hello" + msg);
-}
-function fail() {
-	alert("fail");
-}
+
 
 
 
@@ -27,57 +22,31 @@ function prepareForm() {
 		
 		//var url = "http://10.5.100.178/Minerva/api/Account/Login";
 		var data = '{ "Username" : "Mariusz", "Password" : "Pass" }';
-		//var jData = JSON.stringify(data);
+		var jData = JSON.stringify(data);
 		
-
+		try {
+			$.ajax({
+				  type: "POST",
+				  async: "false",
+				  contentType: "application/json;",
+				  dataType: "json",
+				  url: url,
+				  data: data,
+				  success: function(msg) {
+						alert("OK");
+						window.location.href='home.html';
+				  },
+				  error : function(err) {
+						alert(getMessage("connectionError"));
+				  },
+			});
+		} catch(e) {
+			alert("ERROR AJAX CALL!");
+		}
 		
-/*		$.ajax({
-			   type: 'POST',
-			    url: url,
-			    async: false,
-			    jsonpCallback: jsonCallback(
-			    	    {
-			    	        "sites":
-			    	        [
-			    	            {
-			    	                "siteName": "JQUERY4U",
-			    	                "domainName": "http://www.jquery4u.com",
-			    	                "description": "#1 jQuery Blog for your Daily News, Plugins, Tuts/Tips &amp; Code Snippets."
-			    	            },
-			    	        ]
-			    	    }
-			    	),
-			    contentType: "application/json",
-			    dataType: 'jsonp',
-			    success: function(json) {
-			       console.dir(json.sites);
-			    },
-			    error: function(e) {
-			       console.log(e.message);
-			    }
-			});*/
-		
-		$.ajax({
-			  type: "POST",
-			  async: "false",
-			  contentType: "application/json",
-			  dataType: "jsonp",
-			  crossDomain: true,
-			  url: url,
-			  data: data,
-			  success: function(msg) {
-				  alert("hura: "+ msg);
-			  },
-			  error : function(msg) {
-				  alert("bee: "+ msg.num);
-			  }
-			  
-		});
-		//ajaxPost(url, jData, 'jsonp', success, fail);
-		console.log("poszło");
-		//window.location.href='home.html';
 	});
 }
+
 
 function prepareLanguageSetting() {
 	$("#lgPL").unbind().click(function() {
