@@ -4,7 +4,7 @@ function createPageForFolder(folder, id) {
 		'data-title="'+folder.name+'" '+
 		'data-url="'+id+'">'+
 		'<div data-role="header" data-theme="b"><h1>'+folder.name+'</h1>'+
-		'<a href="#home" data-icon="back" data-transition="slideup">'+getMessage("back")+'</a></div></div>';
+		'<a href="#home" data-icon="back" data-rel="back">'+getMessage("back")+'</a></div></div>';
 	$(page).appendTo("body");
 	if (folder1.length > 0) {
 		fillFolderPage(id);
