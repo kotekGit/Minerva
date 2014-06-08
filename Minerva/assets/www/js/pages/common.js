@@ -1,12 +1,3 @@
-
-function menuButton() {
-	document.addEventListener("menubutton", onMenuKeyDown, false);
-}
-
-function onMenuKeyDown() {
-	alert("Menu in progress");
-}
-
 function mobileInit() {
 	$( document ).bind( 'mobileinit', function(){
 		  $.mobile.loader.prototype.options.text = getMessage("load");
@@ -16,23 +7,12 @@ function mobileInit() {
 	});
 	
 	document.addEventListener("deviceready",onDeviceReady,false);
+	
 }
 
 
 function onDeviceReady() {
 	setCameraDefaults();
+	tmpWstawCalla();
 }
 
-
-function ajaxPost(url, data, success, fail) {
-	$.ajax({
-		  type: "POST",
-		  async: "false",
-		  contentType: "application/json;",
-		  dataType: "jsonp",
-		  url: url,
-		  data: data,
-		  success: success,
-		  error : fail,
-	});
-}

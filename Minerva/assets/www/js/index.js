@@ -11,9 +11,6 @@ function appInit() {
 }
 
 
-
-
-
 function prepareForm() {
 	$("#formTitle").empty().append(getMessage("login"));
 	$("#save").empty().append(getMessage("signin"));
@@ -22,7 +19,7 @@ function prepareForm() {
 		
 		//var url = "http://10.5.100.178/Minerva/api/Account/Login";
 		var data = '{ "Username" : "Mariusz", "Password" : "Pass" }';
-		var jData = JSON.stringify(data);
+		//var jData = JSON.stringify(data);
 		
 		try {
 			$.ajax({
