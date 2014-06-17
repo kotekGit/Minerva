@@ -16,3 +16,13 @@ function onDeviceReady() {
 	tmpWstawCalla();
 }
 
+
+function organizeInputs() {
+	$(document).bind('pageinit', function () {
+        $('input,select').keypress(function(event) { 
+        	return event.keyCode != 13; 
+        });
+    });
+	
+	$('input[type=text]').attr('autocomplete', 'off');
+}

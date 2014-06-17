@@ -10,7 +10,9 @@ var messageENG = {
 	pass: "Password",
 	cancel : "Cancel",
 	signin : "Sign in",
-	connectionError : "Connection Error!"
+	connectionError : "Connection Error!",
+	folderName : "Folder name: ",
+	folderDesc : "Folder description"
 };
 
 var messagePL = {
@@ -23,8 +25,9 @@ var messagePL = {
 	pass: "Hasło",
 	cancel : "Anuluj",
 	signin : "Zaloguj się",
-	connectionError : "Błąd połączenia!"
-		
+	connectionError : "Błąd połączenia!",
+	folderName : "Nazwa folderu: ",
+	folderDesc : "Opis folderu"
 };
 
 function getMessage(msg) {
