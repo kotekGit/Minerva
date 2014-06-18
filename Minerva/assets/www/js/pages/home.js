@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-	printListFolders(foldersList);
+	//printListFolders(foldersList);
 	organizeInputs();
 });
 

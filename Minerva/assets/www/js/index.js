@@ -12,6 +12,43 @@ function appInit() {
 }
 
 
+
+
+
+
+function mobileInit() {
+	$( document ).bind( 'mobileinit', function(){
+/*		  $.mobile.loader.prototype.options.text = getMessage("load");
+		  $.mobile.loader.prototype.options.textVisible = false;
+		  $.mobile.loader.prototype.options.theme = "b";
+		  $.mobile.loader.prototype.options.html = "";*/
+	      $.mobile.defaultPageTransition = "slide";
+	      $.mobile.linkBindingEnabled = false;
+	      $.mobile.hashListeningEnabled = false;
+	});
+	
+	//document.addEventListener("deviceready",onDeviceReady,false);
+	
+}
+
+
+function onDeviceReady() {
+	setCameraDefaults();
+	tmpWstawCalla();
+}
+
+
+function organizeInputs() {
+	$(document).bind('pageinit', function () {
+        $('input,select').keypress(function(event) { 
+        	return event.keyCode != 13; 
+        });
+    });
+	
+	$('input[type=text]').attr('autocomplete', 'off');
+}
+
+
 function prepareForm() {
 	$("#formTitle").empty().append(getMessage("login"));
 	$("#save").empty().append(getMessage("signin"));
@@ -43,7 +80,7 @@ function prepareForm() {
 		}*/
 		
 		
-		window.location.href='home.html';
+		window.location.href='idx.html';
 	});
 }
 
