@@ -80,7 +80,7 @@ function prepareForm() {
 		}*/
 		
 		
-		window.location.href='idx.html';
+		window.location.href='app.html';
 	});
 }
 

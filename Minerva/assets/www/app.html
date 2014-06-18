@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Minerva APP</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" href="js/lib/jqm/jquery.mobile-1.4.2.css" />
+<script src="js/lib/jq.min.js"></script>
+
+<script type="text/javascript">
+	var PATH = "http://192.168.1.101/Minerva/api/";
+	$(document).bind('mobileinit', function() {
+		$.mobile.defaultPageTransition = "slide";
+		$.mobile.linkBindingEnabled = false;
+		$.mobile.hashListeningEnabled = false;
+	});
+</script>
+<script src="js/lib/jqm/jquery.mobile-1.4.2.js"></script>
+
+<style type="text/css">
+.ui-header .ui-title {
+	margin-right: 10%;
+	margin-left: 10%;
+}
+</style>
+</head>
+<body>
+
+	<div data-role="page" id="mainPage" data-theme="b">
+
+		<div data-role="header" data-theme="b">
+			<h4>FOLDERS</h4>
+		</div>
+
+		<div data-role="content" id="mainContent"></div>
+		<div data-role="footer" data-theme="b"></div>
+	</div>
+
+
+	<script type="text/x-mustache-template" id="FolderListView-template">
+    <ul data-role="listview" data-inset="true" data-filter="true" id="{{folderContainerId}}">
+      {{#folderItemDetails}}
+        <li><a href="{{folderFilesUrl}}">{{folderName}}</a></li>
+      {{/folderItemDetails}}
+    </ul>
+	</script>
+	
+	
+	<script type="text/x-mustache-template" id="DirectoryFilesListView-template">
+    <ul data-role="listview" data-inset="true" data-filter="true" id="{{directoryFilesContainerId}}">
+      {{#directoryFilesItemDetails}}
+        <li><a href="{{fileDetailUrl}}">{{fileName}}</a></li>
+      {{/directoryFilesItemDetails}}
+    </ul>
+siema
+	</script>
+
+	<script type="text/x-mustache-template" id="FolderDetails-template">
+  	<div data-role="page" data-theme="b" id="{{folderDetailPageId}}">
+    	<div data-role="header">
+      		<h1> {{folderName}} </h1>
+    	</div>
+    	<div data-role="content">
+      		<a href="{{trailerUrl}}" data-role="button" data-theme="b">Trailer</a>
+      		<img border='0' src={{folderPicUrl}} width=204 height=288></img>
+    	</div>
+  	</div>
+</script>
+
+	<script src="js/lib/underscore.js"></script>
+	<script src="js/lib/backbone.js"></script>
+	<script src="js/lib/mustache.js"></script>
+
+	<script src="js/app/Application.js"></script>
+	<script src="js/app/router/Router.js"></script>
+
+	<!-- Views -->
+	<script src="js/app/view/FolderListView.js"></script>
+	<script src="js/app/view/DirectoryFilesListView.js"></script>
+	<script src="js/app/view/FolderDetailsView.js"></script>
+	<script src="js/app/view/FileView.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			MinervaApp.boot($('#mainContent'), PATH+"/Directory");
+		});
+	</script>
+</body>
+</html>
