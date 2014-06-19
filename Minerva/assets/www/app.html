@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
+<link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="js/lib/jqm/jquery.mobile-1.4.2.css" />
 <script src="js/lib/jq.min.js"></script>
 
@@ -19,13 +20,7 @@
 	});
 </script>
 <script src="js/lib/jqm/jquery.mobile-1.4.2.js"></script>
-
-<style type="text/css">
-.ui-header .ui-title {
-	margin-right: 10%;
-	margin-left: 10%;
-}
-</style>
+<script src="js/main.js"></script>
 </head>
 <body>
 
@@ -36,7 +31,10 @@
 		</div>
 
 		<div data-role="content" id="mainContent"></div>
-		<div data-role="footer" data-theme="b"></div>
+		<div data-role="footer" class="ui-bar">
+<!-- 			<a href="index.html" data-role="button" data-icon="plus">Add</a> 
+			<a href="index.html" data-role="button" data-icon="refresh">Refresh</a> -->
+		</div>
 	</div>
 
 
@@ -46,29 +44,61 @@
         <li><a href="{{folderFilesUrl}}">{{folderName}}</a></li>
       {{/folderItemDetails}}
     </ul>
+	<div class="right">
+		<button onclick="FOLDER.add();" class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button>
+		<button onclick="PAGE.reload();" class="ui-btn ui-icon-refresh ui-btn-inline ui-btn-icon-left ui-btn-icon-notext ui-corner-all">Refresh</button>
+	</div>
 	</script>
-	
-	
-	<script type="text/x-mustache-template" id="DirectoryFilesListView-template">
+
+
+	<script type="text/x-mustache-template"
+		id="DirectoryFilesListView-template">
     <ul data-role="listview" data-inset="true" data-filter="true" id="{{directoryFilesContainerId}}">
       {{#directoryFilesItemDetails}}
         <li><a href="{{fileDetailUrl}}">{{fileName}}</a></li>
       {{/directoryFilesItemDetails}}
     </ul>
-siema
 	</script>
 
-	<script type="text/x-mustache-template" id="FolderDetails-template">
-  	<div data-role="page" data-theme="b" id="{{folderDetailPageId}}">
-    	<div data-role="header">
-      		<h1> {{folderName}} </h1>
-    	</div>
-    	<div data-role="content">
-      		<a href="{{trailerUrl}}" data-role="button" data-theme="b">Trailer</a>
-      		<img border='0' src={{folderPicUrl}} width=204 height=288></img>
-    	</div>
-  	</div>
-</script>
+	<script type="text/x-mustache-template" id="FilesDetails-template">
+	<div data-role="page" data-theme="b" id="{{fileDetailPageId}}">
+		<div data-role="header" data-theme="b">
+			<h1>{{fileName}}</h1>
+		</div>
+		<div data-role="content" data-theme="b">
+			<img src="img/ext-icons/file.png" />
+			<table data-role="table" class="ui-responsive table-stroke">
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>NAZWA</td>
+						<td>{{fileName}}</td>
+					</tr>
+					<tr>
+						<td>OPIS</td>
+						<td>{{fileDescription}}</td>
+					</tr>
+					<tr>
+						<td>OSOBA ODPOWIEDZIALNA</td>
+						<td>{{fileCreator}}</td>
+					</tr>
+					<tr>
+						<td>TEL</td>
+						<td><a href="tel:{{filePhone}}"><img
+								src="img/phone/call.png" /></a></td>
+					</tr>
+				</tbody>
+			</table>
+			<div data-role="footer" data-theme="b"></div>
+		</div>
+	</script>
+
+
 
 	<script src="js/lib/underscore.js"></script>
 	<script src="js/lib/backbone.js"></script>
@@ -80,12 +110,11 @@ siema
 	<!-- Views -->
 	<script src="js/app/view/FolderListView.js"></script>
 	<script src="js/app/view/DirectoryFilesListView.js"></script>
-	<script src="js/app/view/FolderDetailsView.js"></script>
-	<script src="js/app/view/FileView.js"></script>
+	<script src="js/app/view/FileDetailsView.js"></script>
 
 	<script type="text/javascript">
 		$(function() {
-			MinervaApp.boot($('#mainContent'), PATH+"/Directory");
+			MinervaApp.boot($('#mainContent'), PATH + "/Directory");
 		});
 	</script>
 </body>

@@ -1,37 +1,36 @@
 MinervaApp.DirectoryFilesListView = Backbone.View.extend({
 
-	directoryFilesListViewTemplate: MinervaApp.template("DirectoryFilesListView"),
+	directoryFilesListViewTemplate : MinervaApp.template("DirectoryFilesListView"),
 
-	initialize: function(options){
-      this.files = options.files["files"];
+	initialize : function(options) {
+		this.files = options.files["files"];
 	},
 
-	render: function(){
-      var directoryFilesListItems = $(this.directoryFilesListViewTemplate(this));
-      return directoryFilesListItems;
-    },
-
-	directoryFilesContainerId: function(){
-	  return "DirectoryFilesContainer";
+	render : function() {
+		var directoryFilesListItems = $(this.directoryFilesListViewTemplate(this));
+		return directoryFilesListItems;
 	},
 
-	directoryFilesItemDetails: function(){
-      	var directoryFilesItemDetailsArray = [];
-      	var self = this;
+	directoryFilesContainerId : function() {
+		return "DirectoryFilesContainer";
+	},
 
-    	$.each(this.files, function(i, file){
+	directoryFilesItemDetails : function() {
+		var directoryFilesItemDetailsArray = [];
+		var self = this;
+
+		$.each(this.files, function(i, file) {
 			var obj = {};
 			obj["fileName"] = file.name;
 			obj["fileDescription"] = file.description;
-			obj["fileDetailUrl"] = self.getDirectoryFilesDetailUrl(file.name);
+			obj["fileDetailUrl"] = self.getFolderDetailUrl(file.id);
 			directoryFilesItemDetailsArray.push(obj);
 		});
-    	console.log(directoryFilesItemDetailsArray);
 		return directoryFilesItemDetailsArray;
 	},
 
-	getDirectoryFilesDetailUrl: function(folderID){
-      return "#dirFiles/"+folderID;
-	}
+	getFolderDetailUrl : function(fileID) {
+		return "#file/" + fileID;
+	},
 
 });

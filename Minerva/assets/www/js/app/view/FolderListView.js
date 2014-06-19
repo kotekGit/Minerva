@@ -23,17 +23,12 @@ MinervaApp.FolderListView = Backbone.View.extend({
 			var obj = {};
 			obj["folderName"] = folder.name;
 			obj["folderDescription"] = folder.description;
-			obj["folderDetailUrl"] = self.getFolderDetailUrl(folder.name);
 			obj["folderFilesUrl"] = self.getFolderFilesUrl(folder.id);
 			folderItemDetailsArray.push(obj);
 		});
 		return folderItemDetailsArray;
 	},
 
-	getFolderDetailUrl: function(folderName){
-      return "#detail/"+folderName;
-	},
-	
 	getFolderFilesUrl: function(folderID){
 	      return "#dirFiles/"+folderID;
 	}

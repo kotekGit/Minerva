@@ -11,16 +11,20 @@
 	// This is the entry point to our client side application
 	MinervaApp.boot = function(container, foldersUrl) {
 
-		$.getJSON(foldersUrl, function(foldersDetails) {
-			var FOLDERY = {};
-			FOLDERY["folders"] = foldersDetails;
-			container = $(container);
-			var router = new MinervaApp.Router({
-				el : container,
-				folders : FOLDERY
+		try{
+			$.getJSON(foldersUrl, function(foldersDetails) {
+				var FOLDERY = {};
+				FOLDERY["folders"] = foldersDetails;
+				container = $(container);
+				var router = new MinervaApp.Router({
+					el : container,
+					folders : FOLDERY
+				});
+				Backbone.history.start();
 			});
-			Backbone.history.start();
-		});
+		} catch (e) {
+			alert("ERROR CONNECTION");
+		}
 	};
 
 })();

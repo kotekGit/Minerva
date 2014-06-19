@@ -1,3 +1,5 @@
+var FILES = {};
+
 MinervaApp.Router = Backbone.Router.extend({
 	initialize : function(options) {
 		this.el = options.el;
@@ -5,8 +7,9 @@ MinervaApp.Router = Backbone.Router.extend({
 	},
 	routes : {
 		"" : "index",
-		"detail/:name" : "showFolderDetail",
 		"dirFiles/:id" : "showDirectoryFilesList",
+		"file/:id" : "showFileDetail",
+		"dirAdd" : "addFolder"
 	},
 	index : function() {
 		var folderListView = new MinervaApp.FolderListView({
@@ -21,24 +24,10 @@ MinervaApp.Router = Backbone.Router.extend({
 		$.mobile.changePage($("#mainPage"));
 
 	},
-
-	showFolderDetail : function(name) {
-		var folderDetailView = new MinervaApp.FolderDetailView({
-			folders : this.folders,
-			folderName : name
-		});
-		var folderDetailsPage = folderDetailView.render();
-
-		folderDetailsPage.appendTo($.mobile.pageContainer);
-
-		$.mobile.changePage(folderDetailsPage);
-	},
 	
 	showDirectoryFilesList : function(id) {
-		var FILES = {};
 		var filesURL = PATH + "Directory/" + id + "/files";
 		$.getJSON(filesURL, function(directoryFiles) {
-												console.log(directoryFiles);
 			FILES["files"] = directoryFiles;
 			
 			var directoryFilesListView = new MinervaApp.DirectoryFilesListView({
@@ -52,7 +41,21 @@ MinervaApp.Router = Backbone.Router.extend({
 			$("#" + directoryFilesListView.directoryFilesContainerId()).listview();
 			$.mobile.changePage($("#mainPage"));
 		});
-		
+	},
+
+	showFileDetail : function(id) {
+		var fileDetailView = new MinervaApp.FileDetailView({
+			files : FILES,
+			fileID : id
+		});
+		var fileDetailsPage = fileDetailView.render();
+
+		fileDetailsPage.appendTo($.mobile.pageContainer);
+
+		$.mobile.changePage(fileDetailsPage);
+	},
+	
+	addFolder : function() {
 		
 	}
 

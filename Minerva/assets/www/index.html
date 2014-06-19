@@ -4,16 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Minerva</title>
-<link rel="stylesheet"
-	href="js/jquery.mobile-1.4.2/jquery.mobile-1.4.2.css">
-<link rel="stylesheet" href="css/main.css">
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/jquery.mobile-1.4.2/jquery.mobile-1.4.2.js"></script>
+<link rel="stylesheet" href="js/lib/jqm/jquery.mobile-1.4.2.css" />
+<script src="js/lib/jq.min.js"></script>
+<script src="js/lib/jqm/jquery.mobile-1.4.2.js"></script>
+
+<style type="text/css">
+.ui-header .ui-title {
+	margin-right: 10%;
+	margin-left: 10%;
+}
+</style>
 
 <script type="text/javascript" charset="utf-8" src="lib/phonegap.js"></script>
 
 <script src="js/messages.js"></script>
-<script src="js/pages/common.js"></script>
 <script src="js/mobile/camera.js"></script>
 <script src="js/mobile/contact.js"></script>
 <script src="js/index.js"></script>
@@ -26,15 +30,15 @@
 		<div id="wrapper" style="width: 100%; text-align: center">
 			<br />
 			<p>
-				<a href="#popupLogin" data-rel="popup"><img id="locked" src="img/locked.png" /></a>
+				<a href="#popupLogin" data-rel="popup"><img id="locked" src="img/phone/locked.png" /></a>
 				
 			</p>
 			<br />
 			<p>
-				<a href="#popupSettings" data-rel="popup"><img id="settings" src="img/settings.png" /></a>
+				<a href="#popupSettings" data-rel="popup"><img id="settings" src="img/phone/settings.png" /></a>
 			</p>
 			<p>
-				<a href="camera.html"><img src="img/settings.png" /></a>
+				<a href="camera.html"><img src="img/phone/settings.png" /></a>
 			</p>
 		</div>
 

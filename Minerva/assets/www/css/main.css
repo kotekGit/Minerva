@@ -4,6 +4,19 @@ html,body {
 	height: 100%;
 }
 
-a {
-	text-decoration:none;
+.center {
+	text-align: center;
+}
+
+.right {
+	text-align: right;
+}
+
+.left {
+	text-align: left;
+}
+
+.ui-header .ui-title {
+	margin-right: 10%;
+	margin-left: 10%;
 }
