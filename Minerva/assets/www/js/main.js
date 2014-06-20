@@ -45,6 +45,10 @@ var FILE_FORM = {
 		data.description = $("#description").val();
 		$.runAJAX(url, data, "POST", this.success);
 	},
+	del : function(id) {
+		var url = PATH + "file/" + id;
+		$.runAJAX(url, null, "DELETE", this.success);
+	},
 	clear : function() {
 		$("#name").val("");
 		$("#description").val("");

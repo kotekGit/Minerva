@@ -58,7 +58,7 @@ MinervaApp.FileDetailView = Backbone.View.extend({
   //iterates through all folders and sets the current folder Object 
   //Todo - What happens if you dont find the folder
   getCurrentFileObject: function(files, curentID){
-  	var currentFile;
+  	var currentFile = null;
   	$.each(files, function(i, file){
   		if(file.id == curentID){
   			currentFile = file;
