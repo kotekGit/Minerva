@@ -5,8 +5,6 @@ MinervaApp.FileDetailView = Backbone.View.extend({
   initialize : function(options){
   	this.files = options.files["files"];
   	this.currentFileID = options.fileID;
-  	console.log(this.files);
-  	console.log(this.currentFileID);
   	this.currentFile = this.getCurrentFileObject(this.files,this.currentFileID);
   },
   

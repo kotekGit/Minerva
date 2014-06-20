@@ -20,6 +20,7 @@
 	});
 </script>
 <script src="js/lib/jqm/jquery.mobile-1.4.2.js"></script>
+<script src="js/messages.js"></script>
 <script src="js/main.js"></script>
 </head>
 <body>
@@ -32,20 +33,25 @@
 
 		<div data-role="content" id="mainContent"></div>
 		<div data-role="footer" class="ui-bar">
-<!-- 			<a href="index.html" data-role="button" data-icon="plus">Add</a> 
-			<a href="index.html" data-role="button" data-icon="refresh">Refresh</a> -->
 		</div>
 	</div>
 
 
 	<script type="text/x-mustache-template" id="FolderListView-template">
-    <ul data-role="listview" data-inset="true" data-filter="true" id="{{folderContainerId}}">
+    <ul data-role="listview" data-split-icon="gear" data-inset="true" data-filter="true" id="{{folderContainerId}}">
       {{#folderItemDetails}}
-        <li><a href="{{folderFilesUrl}}">{{folderName}}</a></li>
+        <li>
+			<a href="{{folderFilesUrl}}">
+				<img src="img/walpers/folder.png" class="ui-li-thumb">
+				<h2 class="ui-li-heading">{{folderName}}</h2>
+				<p class="">{{folderDescription}}</p>
+			</a>
+			<a href="{{editFolderUrl}}">{{folderName}}</a>
+		</li>
       {{/folderItemDetails}}
     </ul>
 	<div class="right">
-		<button onclick="FOLDER.add();" class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button>
+		<a href="{{getAddFolderURL}}" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
 		<button onclick="PAGE.reload();" class="ui-btn ui-icon-refresh ui-btn-inline ui-btn-icon-left ui-btn-icon-notext ui-corner-all">Refresh</button>
 	</div>
 	</script>
@@ -58,6 +64,10 @@
         <li><a href="{{fileDetailUrl}}">{{fileName}}</a></li>
       {{/directoryFilesItemDetails}}
     </ul>
+	<div class="right">
+		<a href="{{getAddFileURL}}" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
+		<button onclick="PAGE.reload();" class="ui-btn ui-icon-refresh ui-btn-inline ui-btn-icon-left ui-btn-icon-notext ui-corner-all">Refresh</button>
+	</div>
 	</script>
 
 	<script type="text/x-mustache-template" id="FilesDetails-template">
@@ -94,10 +104,74 @@
 					</tr>
 				</tbody>
 			</table>
-			<div data-role="footer" data-theme="b"></div>
 		</div>
+		<div data-role="footer" data-theme="b"></div>
 	</script>
 
+
+	<script type="text/x-mustache-template" id="AddFolder-template">
+	<div data-role="page" data-theme="b" id="{{fileDetailPageId}}">
+		<div data-role="header" data-theme="b">
+			<h1>Add folder</h1>
+		</div>
+		<div data-role="content" data-theme="b">
+			<p>Folder name:</p>
+			<input type="text" id="folderName" value="">
+
+			<p>Description:</p>
+			<textarea cols="40" rows="8" id="description"></textarea>
+		<div class="right">
+			<a onclick="FOLDER_FORM.add();" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
+			<a onclick="FOLDER_FORM.clear();" ><button class="ui-btn ui-icon-minus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
+		</div>
+		</div>
+		<div data-role="footer" data-theme="b"></div>
+	</script>
+	
+	<script type="text/x-mustache-template" id="EditFolder-template">
+	<div data-role="page" data-theme="b" id="{{fileDetailPageId}}">
+		<div data-role="header" data-theme="b">
+			<h1>Edit folder</h1>
+		</div>
+		<div data-role="content" data-theme="b">
+			<p>NAME:</p>
+			<input type="text" id="folderName" value="">
+			<p>Description:</p>
+			<textarea cols="40" rows="8" id="description"></textarea>
+		<div class="right">
+			<a onclick="FOLDER_FORM.edit({{folderID}});" ><button class="ui-btn ui-icon-check ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
+			<a onclick="FOLDER_FORM.clear();" ><button class="ui-btn ui-icon-minus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
+			<a onclick="FOLDER_FORM.del({{folderID}});" ><button class="ui-btn ui-icon-delete ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
+		</div>
+		</div>
+		<div data-role="footer" data-theme="b"></div>
+	</script>
+	
+	
+		<script type="text/x-mustache-template" id="AddFile-template">
+	<div data-role="page" data-theme="b" id="{{fileDetailPageId}}">
+		<div data-role="header" data-theme="b">
+			<h1>Add file</h1>
+		</div>
+		<div data-role="content" data-theme="b">
+			<p>Creator:</p>
+			<input type="text" id="creator" value="{{getCreator}}">
+			<p>Name:</p>
+			<input type="text" id="name" value="">
+			<p>Description:</p>
+			<textarea cols="40" rows="8" id="description"></textarea>
+			<p>Phone:</p>
+			<input type="tel" id="phone" value="">
+			<p>Tag:</p>
+			<input type="text" id="tag" value="">
+			<div class="hidden"><input type="text" id="parentID" value="{{getParentID}}"></div>
+		<div class="right">
+			<a onclick="FILE_FORM.add();" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
+			<a onclick="FILE_FORM.clear();" ><button class="ui-btn ui-icon-minus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
+		</div>
+		</div>
+		<div data-role="footer" data-theme="b"></div>
+	</script>
 
 
 	<script src="js/lib/underscore.js"></script>

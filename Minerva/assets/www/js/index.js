@@ -43,6 +43,8 @@ function prepareForm() {
 	$("#formTitle").empty().append(getMessage("login"));
 	$("#save").empty().append(getMessage("signin"));
 	$("#save").unbind().click(function() {
+		var user = $("#un").val();
+		localStorage.setItem("user", user);
 /*		var url = "http://192.168.1.101:8080/RestFull/json/send";
 		
 		//var url = "http://10.5.100.178/Minerva/api/Account/Login";

@@ -47,3 +47,4 @@ function setLang(lg) {
 function getLang() {
 	return lang;
 }
+

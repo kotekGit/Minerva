@@ -9,7 +9,9 @@ MinervaApp.Router = Backbone.Router.extend({
 		"" : "index",
 		"dirFiles/:id" : "showDirectoryFilesList",
 		"file/:id" : "showFileDetail",
-		"dirAdd" : "addFolder"
+		"dirAdd" : "addFolder",
+		"dirEdit/:id" : "editFolder",
+		"fileAdd/:dirId" : "addFile",
 	},
 	index : function() {
 		var folderListView = new MinervaApp.FolderListView({
@@ -56,7 +58,46 @@ MinervaApp.Router = Backbone.Router.extend({
 	},
 	
 	addFolder : function() {
-		
-	}
+		var addFolderView = new MinervaApp.AddFolderView({
+		});
+		var addFolderPage = addFolderView.render();
+
+		addFolderPage.appendTo($.mobile.pageContainer);
+
+		$.mobile.changePage(addFolderPage);
+	},
+	
+	editFolder : function(id) {
+		var editFolderView = new MinervaApp.EditFolderView({
+			folderID : id,
+		});
+		var editFolderPage = editFolderView.render();
+
+		editFolderPage.appendTo($.mobile.pageContainer);
+
+		$.mobile.changePage(editFolderPage);
+	},
+	
+	addFile : function(dirID) {
+		var addFileView = new MinervaApp.AddFileView({
+			parentID : dirID
+		});
+		var addFilePage = addFileView.render();
+
+		addFilePage.appendTo($.mobile.pageContainer);
+
+		$.mobile.changePage(addFilePage);
+	},
+	
+	editFile : function(id) {
+/*		var editFileView = new MinervaApp.EditFolderView({
+			folderID : id,
+		});
+		var editFilePage = editFileView.render();
+
+		editFilePage.appendTo($.mobile.pageContainer);
+
+		$.mobile.changePage(editFilePage);*/
+	},
 
 });

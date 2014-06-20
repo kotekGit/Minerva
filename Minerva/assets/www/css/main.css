@@ -20,3 +20,7 @@ html,body {
 	margin-right: 10%;
 	margin-left: 10%;
 }
+
+.hidden {
+	display: none;
+}
