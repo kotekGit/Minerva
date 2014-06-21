@@ -3,79 +3,68 @@ $(document).ready(function() {
 	appInit();
 });
 
-
-
 function appInit() {
 	prepareLanguageSetting();
 	prepareForm();
 	organizeInputs();
 }
 
-
-
-
-
-
 function mobileInit() {
-	//document.addEventListener("deviceready",onDeviceReady,false);
-	
-}
+	// document.addEventListener("deviceready",onDeviceReady,false);
 
+}
 
 function onDeviceReady() {
 	setCameraDefaults();
 	tmpWstawCalla();
 }
 
-
 function organizeInputs() {
-	$(document).bind('pageinit', function () {
-        $('input,select').keypress(function(event) { 
-        	return event.keyCode != 13; 
-        });
-    });
-	
+	$(document).bind('pageinit', function() {
+		$('input,select').keypress(function(event) {
+			return event.keyCode != 13;
+		});
+	});
+
 	$('input[type=text]').attr('autocomplete', 'off');
 }
-
 
 function prepareForm() {
 	$("#formTitle").empty().append(getMessage("login"));
 	$("#save").empty().append(getMessage("signin"));
 	$("#save").unbind().click(function() {
 		var user = $("#un").val();
-		localStorage.setItem("user", user);
-/*		var url = "http://192.168.1.101:8080/RestFull/json/send";
+		var pass = $("#pw").val();
+		sessionStorage.setItem("user", user);
+		var data = new Object();
+		data.userName = user;
+		data.password = pass;
+		data.confirmPassword = "";
+		data.grant_type = "password";
 		
-		//var url = "http://10.5.100.178/Minerva/api/Account/Login";
-		var data = '{ "Username" : "Mariusz", "Password" : "Pass" }';
-		//var jData = JSON.stringify(data);
-		
+		var token = "";
+		var url = "http://192.168.1.101/Minerva/Token";
 		try {
 			$.ajax({
-				  type: "POST",
-				  async: "false",
-				  contentType: "application/json;",
-				  dataType: "json",
-				  url: url,
-				  data: data,
-				  success: function(msg) {
-						algert("OK");
-						window.location.href='home.html';
-				  },
-				  error : function(err) {
-						alert(getMessage("connectionError"));
-				  },
+				type : "POST",
+				async : "false",
+
+				url : url,
+				data : data,
+				success : function(msg) {
+					token = msg.access_token;
+					sessionStorage.setItem("token", token);
+					window.location.href = 'app.html';
+				},
+				error : function(xhr, options, err) {
+					alert(getMessage("connectionError")+ xhr.status + " " + err);
+				},
 			});
-		} catch(e) {
+		} catch (e) {
 			alert("ERROR AJAX CALL!");
-		}*/
-		
-		
-		window.location.href='app.html';
+		}
 	});
 }
-
 
 function prepareLanguageSetting() {
 	$("#lgPL").unbind().click(function() {

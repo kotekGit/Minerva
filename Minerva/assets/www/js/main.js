@@ -31,7 +31,6 @@ var FOLDER_FORM = {
 		$("#description").val("");
 	},
 	success : function(msg) {
-		PAGE.reload();
 		Backbone.history.history.back();
 	}
 };
@@ -54,24 +53,31 @@ var FILE_FORM = {
 		$("#description").val("");
 	},
 	success : function(msg) {
-		PAGE.reload();
 		Backbone.history.history.back();
 	}
 };
 
 $.runAJAX = function(url, data, type, success) {
-	return jQuery.ajax({
-		headers : {
-			'Accept' : 'application/json',
-			'Content-Type' : 'application/json'
-		},
-		'type' : type,
-		'url' : url,
-		'data' : JSON.stringify(data),
-		'dataType' : 'json',
-		'success' : success,
-		'error' : function(err) {
-			alert(getMessage("connectionError"));
-		},
-	});
+	var auth = "Bearer " + sessionStorage.getItem("token");
+	if (auth) {
+		return jQuery.ajax({
+			headers : {
+				'Accept' : 'application/json',
+				'Content-Type' : 'application/json',
+				"Authorization": auth
+			},
+			'type' : type,
+			'url' : url,
+			'data' : JSON.stringify(data),
+			'dataType' : 'json',
+			'success' : success,
+			'error' : function(err) {
+				alert(getMessage("connectionError"));
+			},
+		});
+	} else {
+		alert("AUTORIZATION ERROR");
+		return false;
+	}
+
 };

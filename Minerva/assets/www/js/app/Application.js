@@ -12,16 +12,18 @@
 	MinervaApp.boot = function(container, foldersUrl) {
 
 		try{
-			$.getJSON(foldersUrl, function(foldersDetails) {
+			var success = function(foldersDetails) {
 				var FOLDERY = {};
 				FOLDERY["folders"] = foldersDetails;
 				container = $(container);
-				var router = new MinervaApp.Router({
+				new MinervaApp.Router({
 					el : container,
 					folders : FOLDERY
 				});
 				Backbone.history.start();
-			});
+			};
+			$.runAJAX(foldersUrl, null, "GET", success);
+			
 		} catch (e) {
 			alert("ERROR CONNECTION");
 		}

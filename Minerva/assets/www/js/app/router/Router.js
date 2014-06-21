@@ -24,14 +24,17 @@ MinervaApp.Router = Backbone.Router.extend({
 
 		$("#" + folderListView.folderContainerId()).listview();
 		$.mobile.changePage($("#mainPage"));
+		document.addEventListener("backbutton", function(e) {
+			e.preventDefault();
+		});
 
 	},
-	
+
 	showDirectoryFilesList : function(id) {
 		var filesURL = PATH + "Directory/" + id + "/files";
-		$.getJSON(filesURL, function(directoryFiles) {
+		var success = function(directoryFiles) {
 			FILES["files"] = directoryFiles;
-			
+
 			var directoryFilesListView = new MinervaApp.DirectoryFilesListView({
 				files : FILES
 			});
@@ -40,9 +43,13 @@ MinervaApp.Router = Backbone.Router.extend({
 			$("#mainContent").empty();
 			directoryFilesListPage.appendTo("#mainContent");
 
-			$("#" + directoryFilesListView.directoryFilesContainerId()).listview();
+			$("#" + directoryFilesListView.directoryFilesContainerId())
+					.listview();
 			$.mobile.changePage($("#mainPage"));
-		});
+		};
+
+		$.runAJAX(filesURL, null, "GET", success);
+
 	},
 
 	showFileDetail : function(id) {
@@ -56,17 +63,16 @@ MinervaApp.Router = Backbone.Router.extend({
 
 		$.mobile.changePage(fileDetailsPage);
 	},
-	
+
 	addFolder : function() {
-		var addFolderView = new MinervaApp.AddFolderView({
-		});
+		var addFolderView = new MinervaApp.AddFolderView({});
 		var addFolderPage = addFolderView.render();
 
 		addFolderPage.appendTo($.mobile.pageContainer);
 
 		$.mobile.changePage(addFolderPage);
 	},
-	
+
 	editFolder : function(id) {
 		var editFolderView = new MinervaApp.EditFolderView({
 			folderID : id,
@@ -77,7 +83,7 @@ MinervaApp.Router = Backbone.Router.extend({
 
 		$.mobile.changePage(editFolderPage);
 	},
-	
+
 	addFile : function(dirID) {
 		var addFileView = new MinervaApp.AddFileView({
 			parentID : dirID
@@ -88,16 +94,16 @@ MinervaApp.Router = Backbone.Router.extend({
 
 		$.mobile.changePage(addFilePage);
 	},
-	
+
 	editFile : function(id) {
-/*		var editFileView = new MinervaApp.EditFolderView({
-			folderID : id,
-		});
-		var editFilePage = editFileView.render();
-
-		editFilePage.appendTo($.mobile.pageContainer);
-
-		$.mobile.changePage(editFilePage);*/
+		/*
+		 * var editFileView = new MinervaApp.EditFolderView({ folderID : id, });
+		 * var editFilePage = editFileView.render();
+		 * 
+		 * editFilePage.appendTo($.mobile.pageContainer);
+		 * 
+		 * $.mobile.changePage(editFilePage);
+		 */
 	},
 
 });

@@ -13,7 +13,6 @@ MinervaApp.FileDetailView = Backbone.View.extend({
     return fileDetailsPage;
   },
 
-  //Define variables for the template
   fileID: function(){
   	return this.currentFile.id;
   },
@@ -62,7 +61,6 @@ MinervaApp.FileDetailView = Backbone.View.extend({
   	$.each(files, function(i, file){
   		if(file.id == curentID){
   			currentFile = file;
-  			console.log(currentFile);
   			return currentFile;
   		}
   	});
