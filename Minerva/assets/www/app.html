@@ -29,7 +29,8 @@
 	<div data-role="page" id="mainPage" data-theme="b">
 
 		<div data-role="header" data-theme="b">
-			<h4>FOLDERS</h4>
+			<h4 id="folders">FOLDERS</h4>
+			<a href="#menuA" data-icon="grid">Menu</a>
 		</div>
 
 		<div data-role="content" id="mainContent"></div>
@@ -38,12 +39,29 @@
 	</div>
 
 
+<div data-role="panel" id="menuA" data-display="overlay" data-position="left" data-theme="a">
+    <div data-role="content">
+		<input type="search" name="search" placeholder="TAG" id="search-basic" value="" />
+		<a href="#" onclick="PAGE.findByTag(); return false;" data-role="button" id="search">Search</a>
+    
+    	<br />
+        <ul data-role="listview" data-inset="true">
+            <li data-role="list-divider" id="langLV">Language</li>
+            <li><a href="#" onclick="setLang('PL');return false;"><img src="img/languages/PL.png" alt="Polski" class="ui-li-icon ui-corner-none">Polski</a></li>
+			<li><a href="#" onclick="setLang('ENG');return false;"><img src="img/languages/EN.png" alt="English" class="ui-li-icon">English</a></li>
+			<li><a href="#" onclick="setLang('DE');return false;"><img src="img/languages/DE.png" alt="Germany" class="ui-li-icon">Deutsch</a></li>
+        </ul>
+    </div>
+</div>
+
+
+
 	<script type="text/x-mustache-template" id="FolderListView-template">
-    <ul data-role="listview" data-split-icon="gear" data-inset="true" data-filter="true" id="{{folderContainerId}}">
+    <ul data-role="listview" data-split-icon="gear" data-theme="a" data-inset="true" data-filter="true" id="{{folderContainerId}}">
       {{#folderItemDetails}}
         <li>
 			<a href="{{folderFilesUrl}}">
-				<img src="img/walpers/folder.png" class="ui-li-thumb">
+				<img src="img/phone/folder.png" class="ui-li-thumb">
 				<h2 class="ui-li-heading">{{folderName}}</h2>
 				<p class="">{{folderDescription}}</p>
 			</a>
@@ -52,22 +70,22 @@
       {{/folderItemDetails}}
     </ul>
 	<div class="right">
-		<a href="{{getAddFolderURL}}" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
-		<button onclick="PAGE.reload();" class="ui-btn ui-icon-refresh ui-btn-inline ui-btn-icon-left ui-btn-icon-notext ui-corner-all">Refresh</button>
+		<a href="{{getAddFolderURL}}"><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-corner-all" id="addFolder">Create</button></a>
+		<button onclick="PAGE.reload();" class="ui-btn ui-icon-refresh ui-btn-inline ui-btn-icon-left ui-corner-all" id="refresh">Refresh</button>
 	</div>
 	</script>
 
 
 	<script type="text/x-mustache-template"
 		id="DirectoryFilesListView-template">
-    <ul data-role="listview" data-inset="true" data-filter="true" id="{{directoryFilesContainerId}}">
+    <ul data-role="listview" data-inset="true" data-theme="a" data-filter="true" id="{{directoryFilesContainerId}}">
       {{#directoryFilesItemDetails}}
         <li><a href="{{fileDetailUrl}}">{{fileName}}</a></li>
       {{/directoryFilesItemDetails}}
     </ul>
 	<div class="right">
-		<a href="{{getAddFileURL}}" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
-		<button onclick="PAGE.reload();" class="ui-btn ui-icon-refresh ui-btn-inline ui-btn-icon-left ui-btn-icon-notext ui-corner-all">Refresh</button>
+		<a href="{{getAddFileURL}}" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left  ui-corner-all" id="addFolder">Create</button></a>
+		<button onclick="PAGE.reload();" class="ui-btn ui-icon-refresh ui-btn-inline ui-btn-icon-left ui-corner-all" id="refresh">Refresh</button>
 	</div>
 	</script>
 
@@ -106,8 +124,8 @@
 				</tbody>
 			</table>
 		<div class="right">
-			<a onclick="FILE_FORM.edit({{fileID}});" ><button class="ui-btn ui-icon-gear ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
-			<a onclick="FILE_FORM.del({{fileID}});" ><button class="ui-btn ui-icon-delete ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Del</button></a>
+			<a onclick="FILE_FORM.edit({{fileID}});" ><button class="ui-btn ui-icon-gear ui-btn-inline ui-btn-icon-left ui-corner-all" id="edit">Edit</button></a>
+			<a onclick="FILE_FORM.del({{fileID}});" ><button class="ui-btn ui-icon-delete ui-btn-inline ui-btn-icon-left ui-corner-all" id="del">Delete</button></a>
 		</div>
 		</div>
 		<div data-role="footer" data-theme="b"></div>
@@ -126,8 +144,8 @@
 			<p>Description:</p>
 			<textarea cols="40" rows="8" id="description"></textarea>
 		<div class="right">
-			<a onclick="FOLDER_FORM.add();" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
-			<a onclick="FOLDER_FORM.clear();" ><button class="ui-btn ui-icon-minus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
+			<a onclick="FOLDER_FORM.add();" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left  ui-corner-all" id="addFolder">Add</button></a>
+			<a onclick="FOLDER_FORM.clear();" ><button class="ui-btn ui-icon-minus ui-btn-inline ui-btn-icon-left  ui-corner-all" id="clear">Clear</button></a>
 		</div>
 		</div>
 		<div data-role="footer" data-theme="b"></div>
@@ -144,9 +162,9 @@
 			<p>Description:</p>
 			<textarea cols="40" rows="8" id="description"></textarea>
 		<div class="right">
-			<a onclick="FOLDER_FORM.edit({{folderID}});" ><button class="ui-btn ui-icon-check ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
-			<a onclick="FOLDER_FORM.clear();" ><button class="ui-btn ui-icon-minus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
-			<a onclick="FOLDER_FORM.del({{folderID}});" ><button class="ui-btn ui-icon-delete ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
+			<a onclick="FOLDER_FORM.edit({{folderID}});" ><button class="ui-btn ui-icon-check ui-btn-inline ui-btn-icon-left ui-corner-all" id="edit">Edit</button></a>
+			<a onclick="FOLDER_FORM.clear();" ><button class="ui-btn ui-icon-minus ui-btn-inline ui-btn-icon-left ui-corner-all" id="clear">Clear</button></a>
+			<a onclick="FOLDER_FORM.del({{folderID}});" ><button class="ui-btn ui-icon-delete ui-btn-inline ui-btn-icon-left ui-corner-all" id="del">Delete</button></a>
 		</div>
 		</div>
 		<div data-role="footer" data-theme="b"></div>
@@ -170,8 +188,8 @@
 				<input type="text" id="creator" value="{{getCreator}}">
 			</div>
 		<div class="right">
-			<a onclick="FILE_FORM.add();" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
-			<a onclick="FILE_FORM.clear();" ><button class="ui-btn ui-icon-minus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
+			<a onclick="FILE_FORM.add();" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-corner-all" id="addFolder">Add</button></a>
+			<a onclick="FILE_FORM.clear();" ><button class="ui-btn ui-icon-minus ui-btn-inline ui-btn-icon-left ui-corner-all" id="clear">Clear</button></a>
 		</div>
 		</div>
 		<div data-role="footer" data-theme="b"></div>
@@ -192,6 +210,9 @@
 	<script src="js/mobile/camera.js"></script>
 
 	<script type="text/javascript">
+		$(function () {
+		    $("[data-role=panel]").panel().enhanceWithin();
+		});
 		$(function() {
 			MinervaApp.boot($('#mainContent'), PATH + "/Directory");
 		});

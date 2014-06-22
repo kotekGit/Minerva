@@ -2,7 +2,15 @@ var PAGE = {
 	reload : function() {
 		location.reload();
 		return false;
+	},
+	
+	findByTag : function() {
+		var tag = $("#search-basic").val();
+		alert(tag);
+		window.location.replace("#filesByTag/"+tag);
 	}
+
+
 };
 
 var FOLDER_FORM = {

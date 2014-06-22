@@ -8,6 +8,7 @@ MinervaApp.Router = Backbone.Router.extend({
 	routes : {
 		"" : "index",
 		"dirFiles/:id" : "showDirectoryFilesList",
+		"filesByTag/:id" : "showFilesByTag",
 		"file/:id" : "showFileDetail",
 		"dirAdd" : "addFolder",
 		"dirEdit/:id" : "editFolder",
@@ -18,7 +19,7 @@ MinervaApp.Router = Backbone.Router.extend({
 			folders : this.folders
 		});
 		var folderListPage = folderListView.render();
-
+		
 		this.el.empty();
 		folderListPage.appendTo(this.el);
 
@@ -27,7 +28,7 @@ MinervaApp.Router = Backbone.Router.extend({
 		document.addEventListener("backbutton", function(e) {
 			e.preventDefault();
 		});
-
+		changeLang();
 	},
 
 	showDirectoryFilesList : function(id) {
@@ -46,6 +47,30 @@ MinervaApp.Router = Backbone.Router.extend({
 			$("#" + directoryFilesListView.directoryFilesContainerId())
 					.listview();
 			$.mobile.changePage($("#mainPage"));
+			changeLang();
+		};
+
+		$.runAJAX(filesURL, null, "GET", success);
+
+	},
+	
+	showFilesByTag : function(tag) {
+		var filesURL = PATH + "file/findbytag/" + tag;
+		var success = function(directoryFiles) {
+			FILES["files"] = directoryFiles;
+
+			var directoryFilesListView = new MinervaApp.DirectoryFilesListView({
+				files : FILES
+			});
+			var directoryFilesListPage = directoryFilesListView.render();
+
+			$("#mainContent").empty();
+			directoryFilesListPage.appendTo("#mainContent");
+
+			$("#" + directoryFilesListView.directoryFilesContainerId())
+					.listview();
+			$.mobile.changePage($("#mainPage"));
+			changeLang();
 		};
 
 		$.runAJAX(filesURL, null, "GET", success);
@@ -62,6 +87,7 @@ MinervaApp.Router = Backbone.Router.extend({
 		fileDetailsPage.appendTo($.mobile.pageContainer);
 
 		$.mobile.changePage(fileDetailsPage);
+		changeLang();
 	},
 
 	addFolder : function() {
@@ -71,6 +97,7 @@ MinervaApp.Router = Backbone.Router.extend({
 		addFolderPage.appendTo($.mobile.pageContainer);
 
 		$.mobile.changePage(addFolderPage);
+		changeLang();
 	},
 
 	editFolder : function(id) {
@@ -82,6 +109,7 @@ MinervaApp.Router = Backbone.Router.extend({
 		editFolderPage.appendTo($.mobile.pageContainer);
 
 		$.mobile.changePage(editFolderPage);
+		changeLang();
 	},
 
 	addFile : function(dirID) {
@@ -93,6 +121,7 @@ MinervaApp.Router = Backbone.Router.extend({
 		addFilePage.appendTo($.mobile.pageContainer);
 
 		$.mobile.changePage(addFilePage);
+		changeLang();
 	},
 
 	editFile : function(id) {
