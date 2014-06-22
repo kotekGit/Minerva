@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minerva</title>
+<link rel="stylesheet" href="js/lib/jqm/jquery.mobile-1.4.2.css" />
+<script src="js/lib/jq.min.js"></script>
+<script src="js/lib/jqm/jquery.mobile-1.4.2.js"></script>
+
+<style type="text/css">
+.ui-header .ui-title {
+	margin-right: 10%;
+	margin-left: 10%;
+}
+</style>
+
+<script type="text/javascript" charset="utf-8" src="lib/phonegap.js"></script>
+
+<script src="js/messages.js"></script>
+<script src="js/mobile/camera.js"></script>
+<script src="js/mobile/contact.js"></script>
+<script src="js/index.js"></script>
+
+</head>
+<body>
+	<div data-role="page" class="ui-responsive-panel" data-theme="b"
+		id="home" data-title="home" data-url="home">
+
+		<div id="wrapper" style="width: 100%; text-align: center">
+			<br />
+			<p>
+				<a href="#popupLogin" data-rel="popup"><img id="locked" src="img/phone/locked.png" /></a>
+				
+			</p>
+			<br />
+			<p>
+				<a href="#popupSettings" data-rel="popup"><img id="settings" src="img/phone/settings.png" /></a>
+			</p>
+			<p>
+				<a href="camera.html"><img src="img/phone/settings.png" /></a>
+			</p>
+		</div>
+
+
+		<div data-role="popup" id="popupLogin" data-theme="a" data-position-to="window" class="ui-corner-all">
+			<form>
+				<div style="padding: 10px 20px;">
+					<h3 id="formTitle"></h3>
+					<label for="un" class="ui-hidden-accessible" id="name"></label> 
+					<input type="text" id="un" value="" placeholder="username" data-theme="a" /> 
+					<label for="pw" id="pass" class="ui-hidden-accessible"></label>
+					<input type="password" name="pass" id="pw" value="" placeholder="password" data-theme="a" />
+					<button type="submit" data-theme="b" id="save"></button>
+				</div>
+			</form>
+		</div>
+		
+		<div data-role="popup" id="popupSettings" data-theme="b" data-position-to="window" class="ui-corner-all">
+			<a href="#home"><img id="lgPL" src="img/languages/PL.png"  width="70px" height="70px" /></a>
+			<a href="#home"><img id="lgEN" src="img/languages/EN.png"  width="70px" height="70px" /></a>
+			<a href="#home"><img id="lgDE" src="img/languages/DE.png"  width="70px" height="70px" /></a>
+		</div>
+
+
+	</div>
+</body>
+</html>

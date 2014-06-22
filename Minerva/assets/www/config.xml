@@ -26,7 +26,10 @@ Minerva App
     <feature name="http://api.phonegap.com/1.0/notification" />
 
     <plugins>
-     	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />   
+     	<plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+     	<plugin name="File" value="org.apache.cordova.FileUtils" />
+        <plugin name="FileTransfer" value="org.apache.cordova.FileTransfer" />
+        <plugin name="Contacts" value="org.apache.cordova.ContactManager" />
     </plugins>
     
 </widget>

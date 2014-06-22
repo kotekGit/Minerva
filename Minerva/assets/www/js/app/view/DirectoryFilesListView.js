@@ -64,6 +64,6 @@ MinervaApp.AddFileView = Backbone.View.extend({
 	},
 	
 	getCreator : function() {
-		return localStorage.getItem("user");
+		return sessionStorage.getItem("user");
 	}
 });

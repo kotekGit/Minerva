@@ -9,6 +9,7 @@
 
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="js/lib/jqm/jquery.mobile-1.4.2.css" />
+<script type="text/javascript" charset="utf-8" src="lib/phonegap.js"></script>
 <script src="js/lib/jq.min.js"></script>
 
 <script type="text/javascript">
@@ -158,17 +159,16 @@
 			<h1>Add file</h1>
 		</div>
 		<div data-role="content" data-theme="b">
-			<p>Creator:</p>
-			<input type="text" id="creator" value="{{getCreator}}">
 			<p>Name:</p>
 			<input type="text" id="name" value="">
 			<p>Description:</p>
 			<textarea cols="40" rows="8" id="description"></textarea>
-			<p>Phone:</p>
-			<input type="tel" id="phone" value="">
 			<p>Tag:</p>
 			<input type="text" id="tag" value="">
-			<div class="hidden"><input type="text" id="parentID" value="{{getParentID}}"></div>
+			<div class="hidden">
+				<input type="text" id="parentID" value="{{getParentID}}">
+				<input type="text" id="creator" value="{{getCreator}}">
+			</div>
 		<div class="right">
 			<a onclick="FILE_FORM.add();" ><button class="ui-btn ui-icon-plus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
 			<a onclick="FILE_FORM.clear();" ><button class="ui-btn ui-icon-minus ui-btn-inline ui-btn-icon-left ui-btn-icon-notext  ui-corner-all">Add</button></a>
@@ -189,6 +189,7 @@
 	<script src="js/app/view/FolderListView.js"></script>
 	<script src="js/app/view/DirectoryFilesListView.js"></script>
 	<script src="js/app/view/FileDetailsView.js"></script>
+	<script src="js/mobile/camera.js"></script>
 
 	<script type="text/javascript">
 		$(function() {

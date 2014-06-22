@@ -42,7 +42,7 @@ var FILE_FORM = {
 		data.name = $("#name").val();
 		data.parent_id = $("#parentID").val();
 		data.description = $("#description").val();
-		$.runAJAX(url, data, "POST", this.success);
+		$.runAJAX(url, data, "POST", this.successAdd);
 	},
 	del : function(id) {
 		var url = PATH + "file/" + id;
@@ -54,7 +54,13 @@ var FILE_FORM = {
 	},
 	success : function(msg) {
 		Backbone.history.history.back();
+	},
+	successAdd : function(id) {
+		CAMERA.setFileID(id);
+		CAMERA.getPicture();
+		Backbone.history.history.back();
 	}
+	
 };
 
 $.runAJAX = function(url, data, type, success) {

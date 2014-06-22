@@ -6,25 +6,32 @@
     xmlns="http://www.w3.org/ns/widgets" >
 
     <name>
-		Minerva App
+		Minerva App
     </name>
 
     <description>
-        Minerva App Project
+        Minerva App Project
     </description>
 
     <author email="kotowski.poczta@gmail.com" >
-        Kotowski Łukasz
+        Kotowski Łukasz
     </author>
-    
-    <feature name="http://api.phonegap.com/1.0/camera"/>
-    
-	<plugins>
-		<plugin name="Camera" value="org.apache.cordova.CameraLauncher" /> 
-		<plugin name="File" value="org.apache.cordova.FileUtils" />
-		<plugin name="FileTransfer" value="org.apache.cordova.FileTransfer" />   
-		<plugin name="Contacts" value="org.apache.cordova.ContactManager" />
-	</plugins>
-    
+
+    <feature name="http://api.phonegap.com/1.0/camera" />
+    <feature name="File" >
+        <param name="android-package" value="org.apache.cordova.FileUtils" />
+    </feature>
+    <feature name="FileTransfer" >
+        <param name="android-package" value="org.apache.cordova.FileTransfer" />
+    </feature>
+	<feature name="NetworkStatus">
+	    <param name="android-package" value="org.apache.cordova.NetworkManager" />
+	</feature>
+    <plugins>
+        <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+        <plugin name="File" value="org.apache.cordova.FileUtils" />
+        <plugin name="FileTransfer" value="org.apache.cordova.FileTransfer" />
+        <plugin name="Contacts" value="org.apache.cordova.ContactManager" />
+    </plugins>
 
 </widget>
